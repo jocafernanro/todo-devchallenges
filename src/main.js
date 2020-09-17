@@ -3,6 +3,7 @@ import App from "./App.vue";
 import store from "./store";
 
 import "./assets/css/tailwind.css";
+import "./assets/css/animations.css";
 
 Vue.config.productionTip = false;
 

@@ -62,7 +62,11 @@ const mutations = {
     let toToggleTodo = state.todos.find(
       el => el.createdAt === todo.createdAt && el.name === todo.name
     );
+    console.log("-------------");
+    console.log(toToggleTodo);
     toToggleTodo.isDone = !toToggleTodo.isDone;
+    console.log(toToggleTodo);
+    console.log("-------------");
   },
   removeTodo(state, todo) {
     const todoIndex = state.todos.indexOf(todo);

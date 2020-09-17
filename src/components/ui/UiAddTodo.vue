@@ -3,12 +3,13 @@
     <input
       class="border py-4 px-2 rounded-xl text-xs flex-auto mr-6 "
       type="text"
+      @keypress.enter="createNewTodo"
       placeholder="add details"
       v-model="todoName"
     />
     <button
       @click="createNewTodo"
-      class="bg-blue text-white text-xs px-10 py-4 rounded-xl shadow-blue no-outline"
+      class="bg-blue-500 hover:bg-blue-400 active:bg-blue-700 text-white text-xs px-10 py-4 rounded-xl shadow-blue no-outline transform active:translate-y-1"
     >
       Add
     </button>

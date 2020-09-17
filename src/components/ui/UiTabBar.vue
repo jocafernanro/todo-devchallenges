@@ -1,17 +1,17 @@
 <template>
   <nav class="flex flex-row justify-around border-b">
     <ui-tab
-      @[EVENTS.TAB_ACTIVE]="setTabActive(TABS.ALL)"
+      @[EVENTS.TAB_ACTIVE]="activeTab(TABS.ALL)"
       :active="isTabActive(TABS.ALL)"
       >All</ui-tab
     >
     <ui-tab
-      @[EVENTS.TAB_ACTIVE]="setTabActive(TABS.ACTIVE)"
+      @[EVENTS.TAB_ACTIVE]="activeTab(TABS.ACTIVE)"
       :active="isTabActive(TABS.ACTIVE)"
       >Active</ui-tab
     >
     <ui-tab
-      @[EVENTS.TAB_ACTIVE]="setTabActive(TABS.COMPLETED)"
+      @[EVENTS.TAB_ACTIVE]="activeTab(TABS.COMPLETED)"
       :active="isTabActive(TABS.COMPLETED)"
       >Completed</ui-tab
     >
@@ -45,6 +45,10 @@ export default {
     }),
     isTabActive(tab) {
       return this.tabActive === tab;
+    },
+    activeTab(tab) {
+      this.$emit(EVENTS.TAB_CLICKED);
+      this.setTabActive(tab);
     }
   }
 };

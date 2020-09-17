@@ -1,5 +1,6 @@
 export const EVENTS = {
   TAB_ACTIVE: "tab-active",
+  TAB_CLICKED: "tab-clicked",
   TODO_CLICK: "todo-click"
 };
 

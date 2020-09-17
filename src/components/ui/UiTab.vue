@@ -6,7 +6,7 @@
     <span class="text-sm font-bold">
       <slot></slot>
     </span>
-    <div :class="borderActive" class=" h-1 rounded-t mt-2"></div>
+    <div :class="borderActive" class="h-1 rounded-t mt-2"></div>
   </button>
 </template>
 
@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     borderActive() {
-      return this.active ? "bg-blue" : "bg-white";
+      return this.active ? "bg-blue-500" : "bg-white";
     }
   }
 };

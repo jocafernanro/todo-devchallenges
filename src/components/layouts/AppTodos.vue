@@ -1,24 +1,26 @@
 <template>
   <div>
-    <ui-tab-bar></ui-tab-bar>
-    <ui-tab-content>
-      <ui-add-todo v-if="isAddTodoVisible"></ui-add-todo>
-      <div>
-        <ui-todo
-          v-for="(todo, index) in todos"
-          :key="index"
-          :todo="todo"
-          :tabActive="tabActive"
-        ></ui-todo>
-      </div>
-      <button
-        v-if="isDeleteAllButtonVisible"
-        @click="removeAllTodos"
-        class="float-right mt-6 bg-red text-xs text-white py-3 px-6 rounded-md font-bold flex flex-row items-center"
-      >
-        <i class="material-icons text-sm">delete_outline</i> delete all
-      </button>
-    </ui-tab-content>
+    <ui-tab-bar @[EVENTS.TAB_CLICKED]="tabClicked"></ui-tab-bar>
+    <transition name="slide">
+      <ui-tab-content v-if="contentShow">
+        <ui-add-todo v-if="isAddTodoVisible"></ui-add-todo>
+        <div>
+          <ui-todo
+            v-for="(todo, index) in todos"
+            :key="index"
+            :todo="todo"
+            :tabActive="tabActive"
+          ></ui-todo>
+        </div>
+        <button
+          v-if="isDeleteAllButtonVisible"
+          @click="removeAllTodos"
+          class="float-right mt-6 bg-red-500 text-xs text-white py-3 px-6 rounded-md font-bold flex flex-row items-center active:bg-red-700 no-outline transform active:translate-y-1"
+        >
+          <i class="material-icons text-sm">delete_outline</i> delete all
+        </button>
+      </ui-tab-content>
+    </transition>
   </div>
 </template>
 
@@ -29,7 +31,7 @@ import UiTabContent from "@/components/ui/UiTabContent";
 import UiTodo from "@/components/ui/UiTodo";
 
 import { mapGetters, mapActions } from "vuex";
-import { STORE, TABS } from "@/utils/CONSTANTS";
+import { STORE, TABS, EVENTS } from "@/utils/CONSTANTS";
 
 export default {
   name: "AppTodos",
@@ -38,6 +40,12 @@ export default {
     UiAddTodo,
     UiTabContent,
     UiTodo
+  },
+  data() {
+    return {
+      EVENTS: EVENTS,
+      contentShow: true
+    };
   },
   computed: {
     ...mapGetters(STORE.TODOS_STORE, {
@@ -56,7 +64,11 @@ export default {
   methods: {
     ...mapActions(STORE.TODOS_STORE, {
       removeAllTodos: STORE.TODOS.REMOVE_ALL_TODOS
-    })
+    }),
+    tabClicked() {
+      this.contentShow = false;
+      setTimeout(() => (this.contentShow = true), 100);
+    }
   }
 };
 </script>

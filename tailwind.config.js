@@ -6,15 +6,14 @@ module.exports = {
   purge: [],
   theme: {
     extend: {
-      colors: {
-        blue: "#2F80ED",
-        red: "#EB5757"
-      },
       borderRadius: {
         xl: "0.7rem"
       }
     }
   },
-  variants: {},
+  variants: {
+    backgroundColor: ["responsive", "hover", "focus", "active", "group-hover"],
+    translate: ["responsive", "hover", "focus", "active", "group-hover"]
+  },
   plugins: [require("@tailwindcss/custom-forms")]
 };
