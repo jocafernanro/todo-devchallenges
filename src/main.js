@@ -9,5 +9,13 @@ Vue.config.productionTip = false;
 
 new Vue({
   store,
+  beforeCreate() {
+    this.$store.commit("initialiseStore");
+  },
+  created() {
+    this.$store.subscribe((mutation, state) => {
+      localStorage.setItem("store", JSON.stringify(state));
+    });
+  },
   render: h => h(App)
 }).$mount("#app");

@@ -7,7 +7,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    tabActive: 1
+    tabActive: 0
   },
   getters: {
     getTabActive(state) {
@@ -20,6 +20,13 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    initialiseStore(state) {
+      if (localStorage.getItem("store")) {
+        this.replaceState(
+          Object.assign(state, JSON.parse(localStorage.getItem("store")))
+        );
+      }
+    },
     setTabActive(state, tab) {
       state.tabActive = tab;
     }
