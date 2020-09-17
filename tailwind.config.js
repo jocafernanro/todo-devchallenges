@@ -5,8 +5,16 @@ module.exports = {
   },
   purge: [],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        blue: "#2F80ED",
+        red: "#EB5757"
+      },
+      borderRadius: {
+        xl: "0.7rem"
+      }
+    }
   },
   variants: {},
-  plugins: [],
-}
+  plugins: [require("@tailwindcss/custom-forms")]
+};
