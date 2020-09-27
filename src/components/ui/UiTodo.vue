@@ -1,23 +1,19 @@
 <template>
-  <ul>
-    <li class="relative flex flex-row items-center my-4">
-      <label class="inline-flex items-center w-full cursor-pointer">
-        <input
-          @click.self="toggleTodoStatus(todo)"
-          type="checkbox"
-          class="form-checkbox"
-          :checked="todo.isDone"
-        />
-        <span class="ml-2" :class="lineThrough">{{ todo.name }}</span>
-      </label>
-      <i
-        v-if="isRemoveTodoActive"
-        @click="removeTodo(todo)"
-        class="material-icons text-sm text-right absolute right-0 text-gray-500 text-xl p-4 z-10 cursor-pointer p-2"
-        >delete_outline</i
-      >
-    </li>
-  </ul>
+  <div class="w-full">
+    <label
+      @click.prevent="toggleTodoStatus(todo)"
+      class="inline-flex items-center w-full cursor-pointer"
+    >
+      <input type="checkbox" class="form-checkbox" :checked="todo.isDone" />
+      <span class="ml-2" :class="lineThrough">{{ todo.name }}</span>
+    </label>
+    <i
+      v-if="isRemoveTodoActive"
+      @click="removeTodo(todo)"
+      class="material-icons text-sm text-right absolute right-0 text-gray-500 text-xl p-4 z-10 cursor-pointer p-2"
+      >delete_outline</i
+    >
+  </div>
 </template>
 
 <script>

@@ -5,12 +5,15 @@
       <ui-tab-content v-if="contentShow">
         <ui-add-todo v-if="isAddTodoVisible"></ui-add-todo>
         <div>
-          <ui-todo
-            v-for="(todo, index) in todos"
-            :key="index"
-            :todo="todo"
-            :tabActive="tabActive"
-          ></ui-todo>
+          <ul>
+            <li
+              v-for="(todo, index) in todos"
+              :key="index"
+              class="relative flex flex-row items-center my-4"
+            >
+              <ui-todo :todo="todo" :tabActive="tabActive"></ui-todo>
+            </li>
+          </ul>
         </div>
         <button
           v-if="isDeleteAllButtonVisible"
